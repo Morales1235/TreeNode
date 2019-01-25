@@ -15,7 +15,7 @@ struct TreeNode
     TreeNode(TreeNode&& other);
     TreeNode& operator=(TreeNode&& other);
     virtual ~TreeNode() {}
-    typename std::remove_reference<T>::type* operator ->();
+    typename std::add_pointer<T>::type operator ->();
     T& operator*();
 
     T value;
@@ -51,7 +51,7 @@ TreeNode<T, Container>& TreeNode<T, Container>::operator=(const TreeNode<T, Cont
 }
 
 template<typename T, template<class...> typename Container>
-typename std::remove_reference<T>::type *TreeNode<T, Container>::operator ->()
+typename std::add_pointer<T>::type TreeNode<T, Container>::operator ->()
 {
     return &value;
 }
